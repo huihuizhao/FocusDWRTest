@@ -14,7 +14,9 @@
 	}
 
 	function sendParameters() {
-		ItemsBean.CreateImage(showImage, "150E");
+		//ItemsBean.CreateImage(showImage, "10");//传入参数 深度
+		ItemsBean.CreateImage(showImage, DWRUtil.getValue("longitude"));//传入参数 深度
+
 	}
 	function showImage(data) {
 		alert(data);
@@ -24,19 +26,20 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>班级和学生Ajax级联下拉菜单</title>
+<title>DWR测试</title>
 </head>
 
 <body onload="update1()">
 
 	<form name="formform">
-		班级<select name="classid" id="classid"
+		班级<select name=classid id="classid"
 			onchange="javascript:sendParameters();">
 			<option>ttt</option>
 		</select> 学生<select name="userid" id="userid">
 			<option>ttt</option>
 		</select>
-		<button onclick="sendParameters()">测试</button>
+		<button type="button" name="btnOK" id="btnOK"   onclick="javascript:sendParameters();">确定</button>
+		<input name="longitude" id="longitude" >   </input>
 	</form>
 
 </body>

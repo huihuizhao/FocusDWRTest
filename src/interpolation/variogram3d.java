@@ -29,52 +29,7 @@ package interpolation;
 import java.awt.*;
 import javax.swing.*;
 
-/**
- * Calculation of a 3D-variogram
- * 
- * The variogram has 3 directions - according to the cartesian directions, this
- * means from E-W, N-S, Top-Down The result is the range. (Schlueter, 1996: The
- * range is the distance, for which a a statistical connection between to
- * measurement points exists.) The Semi-Variogramm gives the following three
- * parameter: 1. Sill 2. Range (or Correlationlength) 3. Nugget-Effekt
- * 
- * Again after @Schlueter: For example semi-variogram along the x-axis: sort
- * data ascending in x-direction Then for 10 distance-intervals (lags): h =
- * (XMAX-XMIN)/10 h1 = 1*h h2 = 2*h ... h10 = 10*h
- * 
- * Starting with h1, take the first X-Value X1 (take smallest X) and calculate
- * the difference of this value to the value in h1 distance (X2), then square
- * this value plus (X2 - X3)^2 [X3 iis in the distance h1 from X2] plus ...
- * [repeat this N-1 times - until XMAX is reached] (XN-1 - XN)^2 divided with
- * (2*N) [N sshould be in this case also = 10] = GAMMA(h1) repeat this for all
- * the other hN, results in GAMMA(hN), which is the
- * Semi-/Experimental-Variogram.
- * 
- * Following @Kitanidis: consider the case of /i{n} measurements z(/b{x_1}),
- * z(/b{x_2}), ..., z(/b{x_n}),. The bold letter /b{x} stands for the array of
- * coordinates of the point where these measurements were taken. Plot the square
- * difference 1/2[z(/b{x_i})-z(/b{x_i'}),]^2 against the seperation distance
- * ||/b{x_i}-/b{x_i'}|| for all measurement pairs (where || || means the length
- * of a vector). For /i{n} measurements, there are n(n-1)/2 such pairs that form
- * a scatter plot known as the /i{raw variogram}. The experimental variogram is
- * a smooth line through this scatter plot. In the common method of plotting the
- * experimental variogram, the axis of seperation distance is divíded into
- * consectutive intervals, similary as for the histogram. The /i{k}-th interval
- * is [h^l_k,h^u_k] and contains N_k pairs of measurements
- * [z(/b{x_i}),z(/b{x_i'})]. Thenn compute: gamma(h_k) =
- * (1/(2N_k))*SUM[i=1,N_k][z(/b{x_i})-z(/b{x_i'})]^2, where index i refers to
- * each pair of measurements z(/b{x_i}) and z(/b{x_i'}) for which h^l_k <= ||
- * /b{x_i}-/b{x_i'} || < h^u_k. This interval is represented by a single point
- * h_k. Take h_k equal to the average value. h_k =
- * 1/N_k*SUM[i=1,N_k]||/b{x_i}-/b{x_i'}||
- * 
- * Next, these points [h_k,gamma(h_k)] are connected to form the experimental
- * variogram. (...) It is unprofitable to spend too much time at this stage
- * fiddling with the intervals because there is really no "best" experimental
- * variogram. Some useful guidelines to obtain a reasonable experimental
- * variogram are: 1. Use three to six intervals. 2. Include more pairs (use
- * longer intervals) at distances where the raw varigram is spread out.
- */
+
 
 public class variogram3d extends iw3d {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

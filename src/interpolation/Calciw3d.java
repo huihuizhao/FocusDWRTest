@@ -60,7 +60,7 @@ public class Calciw3d extends JFrame {
 			boolean normalize_only_z, int i_normalize, double beta, double delta,
 			int assign_missing_value_when_lower_than, double missingvalue, boolean b_Octant_search, boolean surfer_grd,
 			double min_temp, double max_temp, boolean b_extract_slices, String slice_filename, double dSumT,
-			double dMeanT, int NR_EMPTY_OCT, int NR_DATA_OCT ) {
+			double dMeanT, int NR_EMPTY_OCT, int NR_DATA_OCT,int depth) {
 
 		super("Progress"); // super("Progress "+i);
 		Image image; // the Image is an icon and vice versa ...
@@ -138,8 +138,8 @@ public class Calciw3d extends JFrame {
 		double[] yv = makegrid.yv(dy, ny, min_y);
 		// double[] zv = makegrid.zv(dz, nz, min_z);
 		double[] zv = new double[1];
-		zv[0] = 1000;
-//		zv[0] = depth;//深度
+//		zv[0] = 1000;
+		zv[0] = depth;//深度
 		nz = 0;
 
 		if (debug)
@@ -230,10 +230,7 @@ public class Calciw3d extends JFrame {
 			if (debug)
 				System.out.println("begin of loops - no Octant search!");
 			if (BoundarysDialog.search_x_new == 0.0 && BoundarysDialog.search_y_new == 0.0
-					&& BoundarysDialog.search_z_new == 0.0) { // the user has
-																// selected use
-																// all in every
-																// direction !
+					&& BoundarysDialog.search_z_new == 0.0) { 
 				if (debug)
 					System.out.println("use all in every direction is - true");
 				for (int z = 0; z <= nz; z++) {
@@ -264,24 +261,7 @@ public class Calciw3d extends JFrame {
 									break identic;
 								}
 								vecdist = Math.sqrt(Math.pow(scattered_data_vecdist, 2.0) + Math.pow(delta, 2.0));
-								omega = omega + ((phi[i] * temp[i]) / Math.pow(vecdist, beta)); // if
-																								// the
-																								// distance
-																								// ==
-																								// zero
-																								// this
-																								// value
-																								// becomes
-																								// NaN
-								tau = tau + ((phi[i] * 1.0) / Math.pow(vecdist, beta)); // if
-																						// the
-																						// distance
-																						// ==
-																						// zero
-																						// this
-																						// value
-																						// becomes
-																						// NaN
+								omega = omega + ((phi[i] * temp[i]) / Math.pow(vecdist, beta)); tau = tau + ((phi[i] * 1.0) / Math.pow(vecdist, beta)); 
 							} // i
 							if (b_identic == false)
 								newt[x][y][z] = omega / tau;
@@ -329,24 +309,7 @@ public class Calciw3d extends JFrame {
 								if (ellipsoid <= 1.0) { // this is the search
 														// distance criteria
 									vecdist = Math.sqrt(Math.pow(scattered_data_vecdist, 2.0) + Math.pow(delta, 2.0));
-									omega = omega + ((phi[i] * temp[i]) / Math.pow(vecdist, beta)); // if
-																									// the
-																									// distance
-																									// ==
-																									// zero
-																									// this
-																									// value
-																									// becomes
-																									// NaN
-									tau = tau + ((phi[i] * 1.0) / Math.pow(vecdist, beta)); // if
-																							// the
-																							// distance
-																							// ==
-																							// zero
-																							// this
-																							// value
-																							// becomes
-																							// NaN
+									omega = omega + ((phi[i] * temp[i]) / Math.pow(vecdist, beta)); 									tau = tau + ((phi[i] * 1.0) / Math.pow(vecdist, beta));
 									scr11++;
 								}
 							} // i

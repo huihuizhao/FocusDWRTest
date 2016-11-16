@@ -19,34 +19,23 @@ public class ItemsBean {
 
 	public Map ClassList() {
 		Map reply = new LinkedHashMap();
-		reply.put("0", "所有");
-		reply.put("1", "经度");
-		reply.put("2", "纬度");
+		reply.put("0", "100");
+		reply.put("1", "500");
+		reply.put("2", "1000");
 
 		return reply;
 	}
 
-	public String CreateImage(String CLASSID) {
+	public String CreateImage(String depth) {
+		
+		iw3d iw = new iw3d();
+		// start Thread
+		iw.loadData(Integer.valueOf(depth));
+		
+		
 		// Map reply = new LinkedHashMap();
-		String reply = "";
+		String reply = "D://image_"+String.valueOf(depth)+".jpg";
 
-		// 这里用数组模拟数据库查询结果。
-		// 真实环境中，你只要将数据库查询结果放入到reply里面就可以了。
-		// reply的id就是返回后下拉框的option的value，reply的value就是返回后下拉框的option的text。
-		// 如: sql = "select * from users where classid=?";
-		if (CLASSID == null || CLASSID.equals("") || CLASSID.equals("0")) {
-			//
-		} else if (CLASSID.equals("150E")) {
-			reply = "D://image.jpg";
-//			iw3d iw = new iw3d(1000);
-			iw3d iw = new iw3d();
-			// start Thread
-			iw.loadData();
-		} else if (CLASSID.equals("25N")) {
-			iw3d iw = new iw3d();
-			// start Thread
-			iw.loadData();
-		}
 
 		return reply;
 	}

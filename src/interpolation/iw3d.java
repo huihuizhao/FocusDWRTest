@@ -13,49 +13,7 @@ import java.util.Properties;
 import java.net.URL;
 import java.awt.image.*;
 
-/**
- * @author Wolfram Ruehaak
- * @version 2.1
- * @Copyright: GPL Copyright (c) 2003
- * @e-mail: w.ruehaak@online.de,
- * @homepage: http://www.geomath.onlinehome.de
- * @date: 14.12.2004
- *
- *        iw3d: A programm for gridding 3-dimensional scattered data with the
- *        "inverse-distances" method.
- *
- *        This program is free software; you can redistribute it and/or modify
- *        it under the terms of the GNU General Public License as published by
- *        the Free Software Foundation; either version 2 of the License, or (at
- *        your option) any later version.
- *
- *        This program is distributed in the hope that it will be useful, but
- *        WITHOUT ANY WARRANTY; without even the implied warranty of
- *        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- *        General Public License for more details.
- *
- *        You should have received a copy of the GNU General Public License
- *        along with this program; if not, write to the Free Software
- *        Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
- *        USA
- *
- *        ----------------------------------------------------------------------------
- *        This program reads one data file, then the user has to select the
- *        gridding options, afterwards the calculated data are writen in an
- *        outputfile, further a slice at a selectable depth is written.
- *        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *        New feature in version 1.1: 1) Remove spatial trend before
- *        interpolataion and add it afterward: T(c) = (T(i) - 10)/z[i] T(o) =
- *        (T(c)*depth) + 10 in General for any linear trend: T(c) = (T(i) +
- *        X1)/(X2*Depth) because T is a function of the depth z and begins with
- *        the surface temperature T0 = 10 grade Celsius 2) add a menu option for
- *        blanking for data values with a distance xy / z greater than the mean
- *        xy / z distance (b_blank2)
- *        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *        New feature in version 2.0: 1) Added the abbility to use the 'Octant
- *        Search Method' for compensating clustering effects 2) Calculating &
- *        showing semi-variograms
- */
+ 
 
 //public class iw3d extends JFrame implements ItemListener {
 	public class iw3d extends JFrame {
@@ -212,63 +170,11 @@ import java.awt.image.*;
 		// }
 		this.setIconImage(image);
 
-//		startButton = new JButton("Start");
-//		startButton.setActionCommand("start");
-//		startButton.addActionListener(new ButtonListener());
-//		startButton.setEnabled(false);
-//
-//		loadButton = new JButton("Load Data");
-//		loadButton.setActionCommand("load");
-//		loadButton.addActionListener(new ButtonListener());
-//
-//		infoButton = new JButton("Info");
-//		infoButton.setActionCommand("info");
-//		infoButton.addActionListener(new ButtonListener());
-//
-//		taskOutput = new JTextArea(19, 40);
-//		taskOutput.setLineWrap(true);
-//		taskOutput.setWrapStyleWord(true);
-//		taskOutput.setMargin(new Insets(5, 5, 5, 5));
-//		taskOutput.setEditable(false);
-//
-//		taskOutput.append(
-//				"iw3d, Version 2.1, December 14 2004\n" + "This is a program for quality-weighted 3-d interpolation\n"
-//						+ "of scattered data with the 'inverse-distance weighting' algorithm\n"
-//						+ "Press 'Info' button for more information.\n" + "Contact:\n"
-//						+ "e-mail: w.ruehaak@online.de, http://www.geomath.onlinehome.de\n");
-//
-//		JPanel panel = new JPanel();
-//		panel.add(loadButton);
-//		panel.add(startButton);
-//		panel.add(infoButton);
+//		 
 
 		url = ClassLoader.getSystemResource("iw3d.png");
 		icon = (url != null) ? new ImageIcon(url) : null;
-//		JLabel label = new JLabel(icon);
-//		panel.add(label);
-//
-//		headingLine = new JCheckBox("Data file has heading line?", false);
-//		check_weighting = new JCheckBox("5th column contains weighting values?", false);
-//		JPanel panel2 = new JPanel(new GridLayout(2, 1));
-//		JPanel panel3 = new JPanel(new GridLayout(2, 1));
-//		panel2.add(headingLine);
-//		panel2.add(check_weighting);
-
-//		JPanel contentPane = new JPanel();
-//		contentPane.setLayout(new BorderLayout());
-//		contentPane.add(panel, BorderLayout.NORTH);
-//		contentPane.add(panel2);
-//		contentPane.add(panel3, BorderLayout.EAST);
-//		contentPane.add(new JScrollPane(taskOutput), BorderLayout.SOUTH);
-//		contentPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-//		setContentPane(contentPane);
-
-//		headingLine.addItemListener(this);
-//		check_weighting.addItemListener(this);
-		
-//		Progress prg = new Progress();
-//		// start Thread
-//		prg.start();
+//		 
 	}
 
 	/**
@@ -276,39 +182,7 @@ import java.awt.image.*;
 	 * at the start-frame (buttons, checkboxes)
 	 */
 	public void itemStateChanged(ItemEvent e) {
-//		if ((JCheckBox) e.getSource() == headingLine) {
-//			JCheckBox headingLine = (JCheckBox) e.getSource();
-//			int change = e.getStateChange();
-//			if (change == ItemEvent.SELECTED) {
-//				skip_first_line = true;
-//				if (debug) {
-//					System.out.println(headingLine.getText() + ": SELECTED");
-//					System.out.println("skip_first_line = " + skip_first_line);
-//				}
-//			} else if (change == ItemEvent.DESELECTED) {
-//				skip_first_line = false;
-//				if (debug) {
-//					System.out.println(headingLine.getText() + ": DESELECTED");
-//					System.out.println("skip_first_line = " + skip_first_line);
-//				}
-//			}
-//		} else if ((JCheckBox) e.getSource() == check_weighting) {
-//			JCheckBox check_weighting = (JCheckBox) e.getSource();
-//			int change = e.getStateChange();
-//			if (change == ItemEvent.SELECTED) {
-//				b_weighting = true;
-//				if (debug) {
-//					System.out.println(check_weighting.getText() + ": SELECTED");
-//					System.out.println("weighting = " + b_weighting);
-//				}
-//			} else if (change == ItemEvent.DESELECTED) {
-//				b_weighting = false;
-//				if (debug) {
-//					System.out.println(check_weighting.getText() + ": DESELECTED");
-//					System.out.println("weighting = " + b_weighting);
-//				}
-//			}
-//		}
+//		 
 	}
 
 	/**
@@ -342,24 +216,25 @@ import java.awt.image.*;
 
 	public class Progress extends Thread {
 		public void run() {
-			Calciw3d calc = new Calciw3d(debug, re, ho, de, temp, phi, ni, nx, ny, nz, b_trend, b_blank2, X1, X2, min_x,
-					max_x, min_y, max_y, min_z, max_z, normalize_only_z, i_normalize, beta, delta,
-					assign_missing_value_when_lower_than, missingvalue, b_Octant_search, surfer_grd, min_temp, max_temp,
-					b_extract_slices, slice_filename, dSumT, dMeanT, NR_EMPTY_OCT, NR_DATA_OCT);
+//			Calciw3d calc = new Calciw3d(debug, re, ho, de, temp, phi, ni, nx, ny, nz, b_trend, b_blank2, X1, X2, min_x,
+//					max_x, min_y, max_y, min_z, max_z, normalize_only_z, i_normalize, beta, delta,
+//					assign_missing_value_when_lower_than, missingvalue, b_Octant_search, surfer_grd, min_temp, max_temp,
+//					b_extract_slices, slice_filename, dSumT, dMeanT, NR_EMPTY_OCT, NR_DATA_OCT);
 		}
 	}
 
-	public void loadData() {
+	public void loadData(int depth) {
 		OpenData("Open scattered data (ASCII space/tab/,/; seperated 4 columns !!!)");
 		if (Directory == null && Filename == null) {
 //			loadButton.setEnabled(true); // funktioniert nicht !!!
 //			startButton.setEnabled(false);
 			return;
 		}
+//		int depth=1000;
 		Calciw3d calc = new Calciw3d(debug, re, ho, de, temp, phi, ni, nx, ny, nz, b_trend, b_blank2, X1, X2, min_x,
 				max_x, min_y, max_y, min_z, max_z, normalize_only_z, i_normalize, beta, delta,
 				assign_missing_value_when_lower_than, missingvalue, b_Octant_search, surfer_grd, min_temp, max_temp,
-				b_extract_slices, slice_filename, dSumT, dMeanT, NR_EMPTY_OCT, NR_DATA_OCT );
+				b_extract_slices, slice_filename, dSumT, dMeanT, NR_EMPTY_OCT, NR_DATA_OCT ,depth);
 
 	}
 
@@ -530,12 +405,7 @@ import java.awt.image.*;
 	 * The OpenData Method, opens a FileDialog - calls Open(Directory, Filename)
 	 */
 	public void OpenData(String opentitle) {
-		// FileDialog d1 = new FileDialog(this, opentitle, FileDialog.LOAD);
-		// d1.setDirectory(Directory);
-		// d1.setModal(true);
-		// d1.setVisible(true);
-		// Directory = d1.getDirectory();
-		// Filename = d1.getFile();
+		 
 		Directory = "D:\\FocusMap\\程序代码\\IW3D_Java三维插值\\testdata\\";
 		Filename = "original-3D.dat";
 
