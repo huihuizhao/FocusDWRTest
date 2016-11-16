@@ -1,0 +1,44 @@
+<html>
+
+<script src="/DWRTest/dwr/interface/ItemsBean.js"></script>
+<script src="/DWRTest/dwr/engine.js"></script>
+<script src="/DWRTest/dwr/util.js"></script>
+
+<script language="javascript">
+	function update1() {
+		ItemsBean.ClassList(createList1);
+	}
+	function createList1(data) {
+		DWRUtil.removeAllOptions("classid");
+		DWRUtil.addOptions("classid", data);
+	}
+
+	function sendParameters() {
+		ItemsBean.CreateImage(showImage, "150E");
+	}
+	function showImage(data) {
+		alert(data);
+
+	}
+</script>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>班级和学生Ajax级联下拉菜单</title>
+</head>
+
+<body onload="update1()">
+
+	<form name="formform">
+		班级<select name="classid" id="classid"
+			onchange="javascript:sendParameters();">
+			<option>ttt</option>
+		</select> 学生<select name="userid" id="userid">
+			<option>ttt</option>
+		</select>
+		<button onclick="sendParameters()">测试</button>
+	</form>
+
+</body>
+
+</html>
